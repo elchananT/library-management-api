@@ -1,0 +1,45 @@
+plugins {
+    alias(libs.plugins.kotlin.jvm)
+    alias(ktorLibs.plugins.ktor)
+    application
+}
+
+group = "com.polaris"
+version = "1.0.0-SNAPSHOT"
+
+application {
+    mainClass = "io.ktor.server.netty.EngineMain"
+}
+
+kotlin {
+    jvmToolchain(21)
+}
+dependencies {
+    implementation(ktorLibs.server.config.yaml)
+    implementation(ktorLibs.server.core)
+    implementation(ktorLibs.server.netty)
+    implementation(libs.logback.classic)
+
+    implementation(libs.exposed.core)
+    implementation(libs.exposed.dao)
+    implementation(libs.exposed.jdbc)
+    implementation(libs.exposed.java.runtime)
+
+    implementation(libs.postgresql)
+    implementation(libs.hikari)
+
+    implementation(libs.flyway.core)
+    implementation(libs.flyway.postgresql)
+
+    implementation(libs.koin.ktor)
+
+    implementation(libs.jbcrypt)
+
+    testImplementation(libs.koin.test)
+    testImplementation(libs.testcontainers.postgresql)
+    testImplementation(libs.testcontainers.junit)
+    testImplementation(libs.junit)
+
+    testImplementation(kotlin("test"))
+    testImplementation(ktorLibs.server.testHost)
+}
