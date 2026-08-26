@@ -19,11 +19,16 @@ dependencies {
     implementation(ktorLibs.server.core)
     implementation(ktorLibs.server.netty)
     implementation(libs.logback.classic)
+    implementation(ktorLibs.server.statusPages)
 
     implementation(libs.exposed.core)
     implementation(libs.exposed.dao)
     implementation(libs.exposed.jdbc)
     implementation(libs.exposed.java.runtime)
+    implementation(ktorLibs.server.contentNegotiation)
+    implementation(ktorLibs.serialization.kotlinx.json)
+    implementation(ktorLibs.server.auth.jwt)
+    implementation(ktorLibs.server.auth)
 
     implementation(libs.postgresql)
     implementation(libs.hikari)
@@ -34,6 +39,7 @@ dependencies {
     implementation(libs.koin.ktor)
 
     implementation(libs.jbcrypt)
+    implementation(libs.java.jwt)
 
     testImplementation(libs.koin.test)
     testImplementation(libs.testcontainers.postgresql)

@@ -4,6 +4,11 @@ data class AppConfig(
     val databaseUrl: String,
     val databaseUser: String,
     val databasePassword: String,
+    val jwtSecret: String,
+    val jwtIssuer: String,
+    val jwtAudience: String,
+    val jwtRealm: String,
+    val jwtExpirationMs: Long,
 ) {
     companion object {
         fun fromEnv(): AppConfig {
@@ -16,6 +21,11 @@ data class AppConfig(
                 databaseUrl = "jdbc:postgresql://localhost:5435/library",
                 databaseUser = "library",
                 databasePassword = "library",
+                jwtSecret = "secret",
+                jwtIssuer = "issuer",
+                jwtAudience = "audience",
+                jwtRealm = "realm",
+                jwtExpirationMs = 360000,
             )
         }
     }
