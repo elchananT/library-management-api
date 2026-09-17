@@ -18,5 +18,5 @@ fun appModule(config: AppConfig) = module {
     single<BookRepository> { ExposedBookRepository() }
     single<LoanRepository> { ExposedLoanRepository() }
 
-    single { UserService(get(), get()) }
+    single { UserService(get<UserRepository>(), get<JwtService>()) }
 }

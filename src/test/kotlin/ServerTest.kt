@@ -3,7 +3,8 @@ package com.polaris
 import io.ktor.client.request.get
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.testing.testApplication
-import kotlin.test.*
+import kotlin.test.assertEquals
+import kotlin.test.Test
 
 class ServerTest {
 
@@ -14,5 +15,4 @@ class ServerTest {
         // verify server root returns 200
         assertEquals(HttpStatusCode.OK, client.get("/").status)
     }
-
 }
