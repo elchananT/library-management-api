@@ -16,16 +16,15 @@ data class AppConfig(
                 System.getenv(name)?.takeIf { it.isNotBlank() }
                 ?: error("Missing required environment variable $name")
 
-            // TODO: for production need to use the required
             return AppConfig(
-                databaseUrl = "jdbc:postgresql://localhost:5435/library",
-                databaseUser = "library",
-                databasePassword = "library",
-                jwtSecret = "secret",
-                jwtIssuer = "issuer",
-                jwtAudience = "audience",
-                jwtRealm = "realm",
-                jwtExpirationMs = 360000,
+                databaseUrl = required("DATABASE_URL"),
+                databaseUser = required("DATABASE_USER"),
+                databasePassword = required("DATABASE_PASSWORD"),
+                jwtSecret = required("JWT_SECRET"),
+                jwtIssuer = required("JWT_ISSUER"),
+                jwtAudience = required("JWT_AUDIENCE"),
+                jwtRealm = required("JWT_REALM"),
+                jwtExpirationMs = required("JWT_EXPIRATION_MS").toLong(),
             )
         }
     }
