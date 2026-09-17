@@ -6,7 +6,10 @@ import com.polaris.plugin.configureDatabase
 import com.polaris.plugin.configureSecurity
 import com.polaris.plugin.configureSerialization
 import com.polaris.plugin.configureStatusPages
+import com.polaris.repositories.LoanRepository
 import com.polaris.security.JwtService
+import com.polaris.services.BookService
+import com.polaris.services.LoanService
 import com.polaris.services.UserService
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
@@ -28,6 +31,9 @@ fun Application.module(config: AppConfig = AppConfig.fromEnv()) {
     configureSecurity(config, get<JwtService>())
     configureStatusPages()
     configureRouting(
-        get<UserService>()
+        userService = get<UserService>(),
+        bookService = get<BookService>(),
+        loanService = get<LoanService>(),
+        loanRepository = get<LoanRepository>()
     )
 }

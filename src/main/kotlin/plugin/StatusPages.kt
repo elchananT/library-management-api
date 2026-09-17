@@ -1,9 +1,14 @@
 package com.polaris.plugin
 
+import com.polaris.exceptions.BookAlreadyBorrowException
+import com.polaris.exceptions.DuplicateException
 import com.polaris.exceptions.InvalidCredentialException
+import com.polaris.exceptions.LoanReturnedException
+import com.polaris.exceptions.UnauthorizedOperationException
 import com.polaris.exceptions.ValidationException
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
+import io.ktor.server.application.DuplicatePluginException
 import io.ktor.server.application.install
 import io.ktor.server.plugins.BadRequestException
 import io.ktor.server.plugins.NotFoundException
@@ -29,6 +34,24 @@ fun Application.configureStatusPages() {
         exception<NotFoundException> { call, cause ->
             call.respond(HttpStatusCode.NotFound, cause.message ?: "Unknown error")
         }
+
+        exception<BookAlreadyBorrowException> { call, cause ->
+            call.respond(HttpStatusCode.BadRequest, cause.message ?: "Unknown error")
+        }
+
+        exception<DuplicateException> { call, cause ->
+            call.respond(HttpStatusCode.Conflict, cause.message ?: "Unknown error")
+        }
+
+        exception<UnauthorizedOperationException> { call, cause ->
+            call.respond(HttpStatusCode.Unauthorized, cause.message ?: "Unknown error")
+        }
+
+        exception<LoanReturnedException> { call, cause ->
+            call.respond(HttpStatusCode.BadRequest, cause.message ?: "Unknown error")
+        }
+
+
 
         exception<InvalidCredentialException> { call, cause ->
             call.respond(HttpStatusCode.Unauthorized, cause.message ?: "Unknown error")
