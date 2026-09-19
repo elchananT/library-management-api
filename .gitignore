@@ -4,5 +4,5 @@ build/
 .kotlin/
 .DS_Store
 *.iml
-
+docker-compose.yml
 .env
