@@ -43,7 +43,7 @@ class ExposedLoanRepository : LoanRepository {
         val id = LoansTable.insert {
             it[LoansTable.userId] = userId
             it[LoansTable.bookId] = bookId
-            it[LoansTable.borrowedAt] = LocalDateTime.now()
+            it[LoansTable.borrowedAt] = LocalDateTime.now(ZoneOffset.UTC)
             it[LoansTable.returnedAt] = null
         } get LoansTable.id
 
@@ -54,7 +54,7 @@ class ExposedLoanRepository : LoanRepository {
 
     override fun markReturned(id: Long): Loan? = transaction {
         val updated = LoansTable.update({ LoansTable.id eq id }) {
-            it[LoansTable.returnedAt] = LocalDateTime.now()
+            it[LoansTable.returnedAt] = LocalDateTime.now(ZoneOffset.UTC)
         }
 
         if (updated == 0) null

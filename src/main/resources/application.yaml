@@ -3,5 +3,4 @@ ktor:
     port: 8080
   application:
     modules:
-      - com.polaris.RoutingKt.configureRouting
       - com.polaris.MainKt.module

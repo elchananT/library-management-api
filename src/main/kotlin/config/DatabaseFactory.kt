@@ -32,7 +32,7 @@ object DatabaseFactory {
     private fun runMigrations(dataSource: DataSource) {
         Flyway.configure()
             .dataSource(dataSource)
-            .locations("db/migrations")
+            .locations("db/migration")
             .load()
             .migrate()
     }

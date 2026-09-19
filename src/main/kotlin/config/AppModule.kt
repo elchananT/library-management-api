@@ -7,6 +7,8 @@ import com.polaris.repositories.exposed.ExposedBookRepository
 import com.polaris.repositories.exposed.ExposedLoanRepository
 import com.polaris.repositories.exposed.ExposedUserRepository
 import com.polaris.security.JwtService
+import com.polaris.services.BookService
+import com.polaris.services.LoanService
 import com.polaris.services.UserService
 import org.koin.dsl.module
 
@@ -19,4 +21,6 @@ fun appModule(config: AppConfig) = module {
     single<LoanRepository> { ExposedLoanRepository() }
 
     single { UserService(get<UserRepository>(), get<JwtService>()) }
+    single { BookService(get<BookRepository>()) }
+    single { LoanService(get<LoanRepository>(), get<BookRepository>(), get<UserRepository>()) }
 }

@@ -33,7 +33,7 @@ class ExposedBookRepository : BookRepository {
     }
 
     override fun create(title: String, author: String, isbn: String): Book = transaction {
-        val now = LocalDateTime.now()
+        val now = LocalDateTime.now(ZoneOffset.UTC)
         val id = BooksTable.insert {
             it[BooksTable.title] = title
             it[BooksTable.author] = author

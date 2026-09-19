@@ -58,11 +58,11 @@ class UserService(
 
     private fun toResponse(user: User): UserResponse {
         return UserResponse(
-            user.id,
-            user.username,
-            user.email,
-            user.createdAt,
-            user.updateAt
+            id = user.id,
+            email = user.email,
+            username = user.username,
+            createdAt = user.createdAt,
+            updateAt = user.updateAt
         )
     }
 }

@@ -13,14 +13,14 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.get
 import io.ktor.server.routing.post
-import java.awt.Insets
+import kotlin.time.Instant
 
 private fun Loan.toResponse() = LoanResponse(
     id = id,
     userId = userId,
     bookId = bookId,
-    borrowAt = borrowedAt,
-    returnedAt = returnedAt as Insets?
+    borrowedAt = borrowedAt,
+    returnedAt = returnedAt
 )
 
 fun Route.loanRoute(loanService: LoanService) {

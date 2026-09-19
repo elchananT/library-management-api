@@ -1,7 +1,7 @@
 package com.polaris.dtos
 
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
-import java.awt.Insets
 import java.time.Instant
 
 @Serializable
@@ -12,6 +12,6 @@ data class LoanResponse(
     val id: Long,
     val userId: Long,
     val bookId: Long,
-    val borrowAt: Instant,
-    val returnedAt: Insets?,
+    @Contextual val borrowedAt: Instant,
+    @Contextual val returnedAt: Instant?,
 )

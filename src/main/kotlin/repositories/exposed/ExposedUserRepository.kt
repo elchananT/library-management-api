@@ -8,7 +8,6 @@ import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.lowerCase
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
-import org.mindrot.jbcrypt.BCrypt
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 
@@ -31,11 +30,11 @@ class ExposedUserRepository : UserRepository {
         username: String,
         password: String
     ): User = transaction {
-        val now = LocalDateTime.now()
+        val now = LocalDateTime.now(ZoneOffset.UTC)
         val id = UsersTable.insert {
             it[UsersTable.email] = email
             it[UsersTable.username] = username
-            it[UsersTable.passwordHash] = BCrypt.hashpw(password, BCrypt.gensalt())
+            it[UsersTable.passwordHash] = password
             it[UsersTable.createdAt] = now
             it[UsersTable.updatedAt] = now
         } get UsersTable.id

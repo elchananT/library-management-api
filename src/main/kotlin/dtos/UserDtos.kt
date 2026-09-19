@@ -1,5 +1,6 @@
 package com.polaris.dtos
 
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import java.time.Instant
 
@@ -8,8 +9,8 @@ data class UserResponse(
     val id: Long,
     val email: String,
     val username: String,
-    val createdAt: Instant,
-    val updateAt: Instant
+    @Contextual val createdAt: Instant,
+    @Contextual val updateAt: Instant
 )
 
 @Serializable
